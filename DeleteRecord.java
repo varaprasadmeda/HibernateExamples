@@ -5,27 +5,26 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateClientApp {
+public class DeleteRecord {
 
 	public static void main(String[] args) {
-
-		System.out.println("Hibernate Example");
+		System.out.println("Hibernate Example for Retrieving...");
 		Configuration config = new Configuration();
 		config.configure("hibernate.cfg.xml");
 		SessionFactory factory = config.buildSessionFactory();
 		Session session = factory.openSession();
 		Transaction tx = session.beginTransaction();
-
-		Employee emp = new Employee();
-		emp.setName("Kiran");
-		emp.setEmpSalary(10000.00f);
-		emp.setEmpAddress("Califonia");
 		
-		session.save(emp);
+        Employee emp = new Employee();
+        emp.setEmpId(4);
+		
+		session.delete(emp);
 		tx.commit();
-		session.clear();
-		factory.close();
-		System.out.println("Successfully updated record");
+		session.close();
+		
+		
+		
+		
 
 	}
 
